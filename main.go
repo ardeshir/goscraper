@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
 )
 
 // build http client to fetch
@@ -35,7 +36,7 @@ func getClient(url string) {
 		r.Body.Read(webPageContent)
 
 		var out *os.File
-		out, err = os.OpenFile(url, os.O_CREATE|os.O_WRONLY, 0664)
+		out, err = os.OpenFile(path.Base(url), os.O_CREATE|os.O_WRONLY, 0664)
 		if err != nil {
 			panic(err)
 		}
